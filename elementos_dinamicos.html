@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Elementos Dinamicos</title>
+    </head>
+    <body id="corpo">
+        <h1>Adicionar Elementos</h1>
+        <p>
+            Digite o texto:
+            <input type="text" id="texto" />
+        </p>
+        <p>
+            <button onclick="adicionar()">Adicionar</button>
+        </p>
+        <script>
+            var id = 0;
+            function adicionar() {
+                var texto = document.getElementById("texto");
+                var para = document.createElement("p");
+                para.id = "para_" + id++;
+                para.innerHTML = texto.value + " " + para.id;
+                var button = document.createElement("button");
+                button.setAttribute("onclick", "remover('" + para.id + "');");
+                button.innerHTML = "X";
+                para.appendChild(button);
+                var corpo = document.getElementById("corpo");
+                corpo.appendChild(para);
+                texto.value = "";
+            }
+
+            function remover(id) {
+                var pai = document.getElementById("corpo");
+                var filho = document.getElementById(id);
+                pai.removeChild(filho);
+            }
+        </script>
+    </body>
+</html>
